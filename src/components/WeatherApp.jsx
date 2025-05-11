@@ -2,7 +2,7 @@ import React, { use, useEffect, useState } from "react";
 
 export default function WeatherApp() {
   const [weatherData, setWeatherData] = useState([]);
-  const API_key = process.env.API_Key;
+  const API_key = process.env.Weather_Key;
   const [city, setCity] = useState("Illinois");
   const [lat, setLat] = useState("15");
   const [lon, setLon] = useState("-70");
@@ -40,22 +40,21 @@ export default function WeatherApp() {
       }
     }
   });
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      setCity(event.target.name.value);
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setCity(event.target.name.value);
+  };
 
-    return (
-      <>
-        <div>
-          <form onSubmit={handleSubmit}>
-            {console.log(city)}
-            <input type="text" placeholder="Location name" name="name" />
-            <button type="submit">City</button>
-            <button type="submit">Temperature</button>
-          </form>
-        </div>
-      </>
-    );
- 
+  return (
+    <>
+      <div>
+        <form onSubmit={handleSubmit}>
+          {console.log(city)}
+          <input type="text" placeholder="Location name" name="name" />
+          <button type="submit">City</button>
+          <button type="submit">Temperature</button>
+        </form>
+      </div>
+    </>
+  );
 }
