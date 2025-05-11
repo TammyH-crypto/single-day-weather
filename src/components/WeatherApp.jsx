@@ -6,7 +6,6 @@ export default function WeatherApp() {
   const [city, setCity] = useState("Illinois");
   const [lat, setLat] = useState("15");
   const [lon, setLon] = useState("-70");
-  
 
   useEffect(() => {
     getData();
@@ -26,43 +25,37 @@ export default function WeatherApp() {
     }
   }
 
-}
   useEffect(() => {
-async function getWeatherData() {
-    try {
+    async function getWeatherData() {
+      try {
         const res = await fetch(
-           `https://api.openweathermap.org/data/2.5/forecast?=${city},${country}&appid=${key}&units-imperial`
+          `https://api.openweathermap.org/data/2.5/forecast?=${city},${country}&appid=${key}&units-imperial`
         );
         const data = await res.json();
 
         setWeather(data.list);
         setLoading(false);
-    } catch (error) {
+      } catch (error) {
         console.log(error);
+      }
     }
-   
+  });
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      setCity(event.target.name.value);
+    };
+
+    return (
+      <>
+        <div>
+          <form onSubmit={handleSubmit}>
+            {console.log(city)}
+            <input type="text" placeholder="Location name" name="name" />
+            <button type="submit">City</button>
+            <button type="submit">Temperature</button>
+          </form>
+        </div>
+      </>
+    );
+ 
 }
-
-const handleSubmit = (event) => {
-    event.preventDefault();
-    setCity(event.target.name.value);
-  };
-
-  return (
-    <>
-    <div>
-     <form onSubmit={handleSubmit}>
-      {console.log(city)}
-      <input type="text" placeholder="Location name" name="name" />
-      <button type="submit">City</button>
-      <button type="submit">Temperature</button>
-    </form>
-  
-</div>
-    </>
-   );
-}
-
-  )
-
-
